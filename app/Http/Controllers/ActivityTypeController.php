@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ActivityTypeResource;
 use App\Models\ActivityType;
 use Exception;
 use Illuminate\Http\Request;
@@ -12,12 +13,13 @@ class ActivityTypeController extends Controller
     {
         try {
             return response()->json([
-                'message' => 'Success',
-                'data' => ActivityType::all()
+                'message' => 'Виды деятельности',
+                'data' => ActivityTypeResource::collection(ActivityType::all()),
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-                'message' => '',
+                'message' => 'Ошибка получения видов деятельности',
                 'error' => $e->getMessage()
             ], 500);
         }
