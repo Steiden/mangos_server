@@ -24,4 +24,87 @@ class AutomationEditorController extends Controller
             ], 500);
         }
     }
+
+    public function show($id) {
+        try {
+            $automationEditor = AutomationEditor::find($id);
+            if (!$automationEditor) {
+                return response()->json([
+                   'message' => 'Редактор автоматизации не найден',
+                   'success' => false
+                ], 404);
+            }
+            return response()->json([
+               'message' => 'Редактор автоматизации',
+                'data' => new AutomationEditorResource($automationEditor),
+               'success' => true
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+               'message' => 'Ошибка получения редактора автоматизации',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function store(Request $request) {
+        try {
+            $automationEditor = AutomationEditor::create($request->all());
+            return response()->json([
+               'message' => 'Редактор автоматизации создан',
+                'data' => new AutomationEditorResource($automationEditor),
+               'success' => true
+            ], 201);
+        } catch (Exception $e) {
+            return response()->json([
+               'message' => 'Ошибка создания редактора автоматизации',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function update(Request $request, $id) {
+        try {
+            $automationEditor = AutomationEditor::find($id);
+            if (!$automationEditor) {
+                return response()->json([
+                   'message' => 'Редактор автоматизации не найден',
+                   'success' => false
+                ], 404);
+            }
+            $automationEditor->update($request->all());
+            return response()->json([
+               'message' => 'Редактор автоматизации изменен',
+                'data' => new AutomationEditorResource($automationEditor),
+               'success' => true
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+               'message' => 'Ошибка изменения редактора автоматизации',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function destroy($id) {
+        try {
+            $automationEditor = AutomationEditor::find($id);
+            if (!$automationEditor) {
+                return response()->json([
+                   'message' => 'Редактор автоматизации не найден',
+                   'success' => false
+                ], 404);
+            }
+            $automationEditor->delete();
+            return response()->json([
+               'message' => 'Редактор автоматизации удален',
+               'success' => true
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+               'message' => 'Ошибка удаления редактора автоматизации',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 }

@@ -24,4 +24,90 @@ class TaskController extends Controller
             ], 500);
         }
     }
+
+    public function store(Request $request) {
+        try {
+            $task = Task::create($request->all());
+            return response()->json([
+               'message' => 'Задача создана',
+                'data' => new TaskResource($task),
+               'success' => true
+            ], 201);
+        } catch (Exception $e) {
+            return response()->json([
+               'message' => 'Ошибка создания задачи',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function show($id) {
+        try {
+            $task = Task::find($id);
+            if ($task) {
+                return response()->json([
+                   'message' => 'Задача',
+                    'data' => new TaskResource($task),
+                   'success' => true
+                ], 200);
+            } else {
+                return response()->json([
+                   'message' => 'Задача не найдена',
+                   'success' => false
+                ], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+               'message' => 'Ошибка получения задачи',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function update(Request $request, $id) {
+        try {
+            $task = Task::find($id);
+            if ($task) {
+                $task->update($request->all());
+                return response()->json([
+                   'message' => 'Задача изменена',
+                    'data' => new TaskResource($task),
+                   'success' => true
+                ], 200);
+            } else {
+                return response()->json([
+                   'message' => 'Задача не найдена',
+                   'success' => false
+                ], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+               'message' => 'Ошибка изменения задачи',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function destroy($id) {
+        try {
+            $task = Task::find($id);
+            if ($task) {
+                $task->delete();
+                return response()->json([
+                   'message' => 'Задача удалена',
+                   'success' => true
+                ], 200);
+            } else {
+                return response()->json([
+                   'message' => 'Задача не найдена',
+                   'success' => false
+                ], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+               'message' => 'Ошибка удаления задачи',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 }

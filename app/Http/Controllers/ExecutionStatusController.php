@@ -24,4 +24,87 @@ class ExecutionStatusController extends Controller
             ], 500);
         }
     }
+
+    public function store(Request $request) {
+        try {
+            $executionStatus = ExecutionStatus::create($request->all());
+            return response()->json([
+               'message' => 'Статус выполнения создан',
+                'data' => new ExecutionStatusResource($executionStatus),
+               'success' => true
+            ], 201);
+        } catch (Exception $e) {
+            return response()->json([
+               'message' => 'Статус выполнения создать',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function show($id) {
+        try {
+            $executionStatus = ExecutionStatus::find($id);
+            if (!$executionStatus) {
+                return response()->json([
+                   'message' => 'Статус выполнения не найден',
+                   'success' => false
+                ], 404);
+            }
+            return response()->json([
+               'message' => 'Статус выполнения',
+                'data' => new ExecutionStatusResource($executionStatus),
+               'success' => true
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+               'message' => 'Статус выполнения получить',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function update(Request $request, $id) {
+        try {
+            $executionStatus = ExecutionStatus::find($id);
+            if (!$executionStatus) {
+                return response()->json([
+                   'message' => 'Статус выполнения не найден',
+                   'success' => false
+                ], 404);
+            }
+            $executionStatus->update($request->all());
+            return response()->json([
+               'message' => 'Статус выполнения изменен',
+                'data' => new ExecutionStatusResource($executionStatus),
+               'success' => true
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+               'message' => 'Статус выполнения изменить',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function destroy($id) {
+        try {
+            $executionStatus = ExecutionStatus::find($id);
+            if (!$executionStatus) {
+                return response()->json([
+                   'message' => 'Статус выполнения не найден',
+                   'success' => false
+                ], 404);
+            }
+            $executionStatus->delete();
+            return response()->json([
+               'message' => 'Статус выполнения удален',
+               'success' => true
+            ], 204);
+        } catch (Exception $e) {
+            return response()->json([
+               'message' => 'Статус выполнения удалить',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 }
