@@ -20,10 +20,12 @@ use App\Http\Controllers\EventRepeatController;
 use App\Http\Controllers\ExecutionStatusController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FileTypeController;
+use App\Http\Controllers\MessageAttachmentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MessageTypeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\OrganizationEmployeeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectMemberController;
@@ -61,9 +63,11 @@ use Illuminate\Support\Facades\Route;
     // files
     // file_types
     // messages
+    // message_attachments
     // message_types
     // notifications
     // organizations
+    // organization_employees
     // posts
     // projects
     // project_members
@@ -100,9 +104,11 @@ use Illuminate\Support\Facades\Route;
     Route::apiResource('files', FileController::class);
     Route::apiResource('file_types', FileTypeController::class);
     Route::apiResource('messages', MessageController::class);
+    Route::apiResource('message_attachments', MessageAttachmentController::class);
     Route::apiResource('message_types', MessageTypeController::class);
     Route::apiResource('notifications', NotificationController::class);
     Route::apiResource('organizations', OrganizationController::class);
+    Route::apiResource('organization_employees', OrganizationEmployeeController::class);
     Route::apiResource('posts', PostController::class);
     Route::apiResource('projects', ProjectController::class);
     Route::apiResource('project_members', ProjectMemberController::class);
@@ -114,5 +120,5 @@ use Illuminate\Support\Facades\Route;
     Route::apiResource('task_performers', TaskPerformerController::class);
     Route::apiResource('task_priorities', TaskPriorityController::class);
     Route::apiResource('task_tags', TaskTagController::class);
-    Route::apiResource('users', UserController::class);   
+    Route::apiResource('users', UserController::class);
 // });
