@@ -59,14 +59,14 @@ class UserController extends Controller
             $validatedData = $request->validate([
                 'login' => 'required|string|unique:users,login',
                 'password' => 'required|string',
-                'avatar' => 'required|string',
+                'avatar' => '',
                 'first_name' => 'required|string',
                 'last_name' => 'required|string',
                 'patronymic' => 'string',
                 'phone' => 'string',
                 'email' => 'required|string|unique:users,email',
-                'is_subordinate' => 'required|boolean',
-                'organization_id' => 'required|number',
+                'is_subordinate' => 'boolean',
+                'organization_id' => 'integer',
             ]);
 
             $validatedData['password'] = bcrypt($request->get('password'));

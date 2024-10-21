@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityTypeController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AutomationActionController;
 use App\Http\Controllers\AutomationConditionController;
 use App\Http\Controllers\AutomationController;
@@ -81,8 +82,13 @@ use Illuminate\Support\Facades\Route;
     // task_tags
     // users
 
+Route::prefix('auth')->group(function () {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('logout', [AuthController::class, 'logout']);
+});
 
-// Route::middleware('auth:api')->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('activity_types', ActivityTypeController::class);
     Route::apiResource('automation_actions', AutomationActionController::class);
     Route::apiResource('automation_conditions', AutomationConditionController::class);
@@ -121,4 +127,4 @@ use Illuminate\Support\Facades\Route;
     Route::apiResource('task_priorities', TaskPriorityController::class);
     Route::apiResource('task_tags', TaskTagController::class);
     Route::apiResource('users', UserController::class);
-// });
+});

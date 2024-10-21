@@ -24,7 +24,6 @@ class AuthController extends Controller
                 ], 404);
             }
 
-            // Paswords are compare
             if (!\password_verify($validatedData['password'], $user->password)) {
                 return response()->json([
                     'success' => false,

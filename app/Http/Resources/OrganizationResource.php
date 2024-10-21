@@ -23,7 +23,7 @@ class OrganizationResource extends JsonResource
             'address' => $this->address,
             'phone' => $this->phone,
             'activity_type' => new ActivityTypeResource(ActivityType::where('id', $this->activity_type_id)->first()),
-            'user' => new UserResource(User::find($this->user_id)->first()),
+            'user' => new UserShortResource(User::find($this->user_id)),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
