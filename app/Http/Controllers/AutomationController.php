@@ -20,98 +20,107 @@ class AutomationController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения автоматизаций',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $automation = Automation::create($request->all());
 
             return response()->json([
-               'message' => 'Автоматизация создана',
+                'message' => 'Автоматизация создана',
                 'data' => new AutomationResource($automation),
-               'success' => true
+                'success' => true
             ], 201);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка создания автоматизации',
+                'message' => 'Ошибка создания автоматизации',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $automation = Automation::find($id);
 
             if (!$automation) {
                 return response()->json([
-                   'message' => 'Автоматизация не найдена',
-                   'success' => false
+                    'message' => 'Автоматизация не найдена',
+                    'success' => false
                 ], 404);
             }
 
             return response()->json([
-               'message' => 'Автоматизация',
+                'message' => 'Автоматизация',
                 'data' => new AutomationResource($automation),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка получения автоматизации',
+                'message' => 'Ошибка получения автоматизации',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $automation = Automation::find($id);
 
             if (!$automation) {
                 return response()->json([
-                   'message' => 'Автоматизация не найдена',
-                   'success' => false
+                    'message' => 'Автоматизация не найдена',
+                    'success' => false
                 ], 404);
             }
 
             $automation->update($request->all());
 
             return response()->json([
-               'message' => 'Автоматизация изменена',
+                'message' => 'Автоматизация изменена',
                 'data' => new AutomationResource($automation),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка изменения автоматизации',
+                'message' => 'Ошибка изменения автоматизации',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             $automation = Automation::find($id);
 
             if (!$automation) {
                 return response()->json([
-                   'message' => 'Автоматизация не найдена',
-                   'success' => false
+                    'message' => 'Автоматизация не найдена',
+                    'success' => false
                 ], 404);
             }
 
             $automation->delete();
 
             return response()->json([
-               'message' => 'Автоматизация удалена',
-               'success' => true
+                'message' => 'Автоматизация удалена',
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка удаления автоматизации',
+                'message' => 'Ошибка удаления автоматизации',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

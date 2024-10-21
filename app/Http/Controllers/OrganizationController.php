@@ -20,108 +20,117 @@ class OrganizationController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения организаций',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $validatedData = $request->validate([
-                'name' =>'required|string|max:255',
-                'description' =>'required|string|max:255'
+                'name' => 'required|string|max:255',
+                'description' => 'required|string|max:255'
             ]);
 
             $organization = Organization::create($validatedData);
 
             return response()->json([
-               'message' => 'Организация создана',
+                'message' => 'Организация создана',
                 'data' => new OrganizationResource($organization),
-               'success' => true
+                'success' => true
             ], 201);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка создания организации',
+                'message' => 'Ошибка создания организации',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $organization = Organization::find($id);
 
             if (!$organization) {
                 return response()->json([
-                   'message' => 'Организация не найдена',
-                   'success' => false
+                    'message' => 'Организация не найдена',
+                    'success' => false
                 ], 404);
             }
 
             return response()->json([
-               'message' => 'Организация',
+                'message' => 'Организация',
                 'data' => new OrganizationResource($organization),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка получения организации',
+                'message' => 'Ошибка получения организации',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $organization = Organization::find($id);
 
             if (!$organization) {
                 return response()->json([
-                   'message' => 'Организация не найдена',
-                   'success' => false
+                    'message' => 'Организация не найдена',
+                    'success' => false
                 ], 404);
             }
 
             $validatedData = $request->validate([
-                'name' =>'required|string|max:255',
-                'description' =>'required|string|max:255'
+                'name' => 'required|string|max:255',
+                'description' => 'required|string|max:255'
             ]);
 
             $organization->update($validatedData);
 
             return response()->json([
-               'message' => 'Организация изменена',
+                'message' => 'Организация изменена',
                 'data' => new OrganizationResource($organization),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка изменения организации',
+                'message' => 'Ошибка изменения организации',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             $organization = Organization::find($id);
 
             if (!$organization) {
                 return response()->json([
-                   'message' => 'Организация не найдена',
-                   'success' => false
+                    'message' => 'Организация не найдена',
+                    'success' => false
                 ], 404);
             }
 
             $organization->delete();
 
             return response()->json([
-               'message' => 'Организация удалена',
-               'success' => true
+                'message' => 'Организация удалена',
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка удаления организации',
+                'message' => 'Ошибка удаления организации',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

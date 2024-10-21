@@ -20,89 +20,98 @@ class EventMemberController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения участников событий',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $eventMember = EventMember::create($request->all());
             return response()->json([
-               'message' => 'Участник события создан',
+                'message' => 'Участник события создан',
                 'data' => new EventMemberResource($eventMember),
-               'success' => true
+                'success' => true
             ], 201);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка создания участника события',
+                'message' => 'Ошибка создания участника события',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $eventMember = EventMember::find($id);
             if (!$eventMember) {
                 return response()->json([
-                   'message' => 'Участник события не найден',
-                   'success' => false
+                    'message' => 'Участник события не найден',
+                    'success' => false
                 ], 404);
             }
             $eventMember->update($request->all());
             return response()->json([
-               'message' => 'Участник события изменен',
+                'message' => 'Участник события изменен',
                 'data' => new EventMemberResource($eventMember),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка изменения участника события',
+                'message' => 'Ошибка изменения участника события',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             $eventMember = EventMember::find($id);
             if (!$eventMember) {
                 return response()->json([
-                   'message' => 'Участник события не найден',
-                   'success' => false
+                    'message' => 'Участник события не найден',
+                    'success' => false
                 ], 404);
             }
             $eventMember->delete();
             return response()->json([
-               'message' => 'Участник события удален',
-               'success' => true
+                'message' => 'Участник события удален',
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка удаления участника события',
+                'message' => 'Ошибка удаления участника события',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $eventMember = EventMember::find($id);
             if (!$eventMember) {
                 return response()->json([
-                   'message' => 'Участник события не найден',
-                   'success' => false
+                    'message' => 'Участник события не найден',
+                    'success' => false
                 ], 404);
             }
             return response()->json([
-               'message' => 'Информация о участнике события',
+                'message' => 'Информация о участнике события',
                 'data' => new EventMemberResource($eventMember),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка получения информации о участнике события',
+                'message' => 'Ошибка получения информации о участнике события',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

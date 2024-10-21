@@ -20,82 +20,91 @@ class TaskAttachmentController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения вложений задач',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $attachment = TaskAttachment::create($request->all());
             return response()->json([
-               'message' => 'Вложение успешно создано',
+                'message' => 'Вложение успешно создано',
                 'data' => new TaskAttachmentResource($attachment),
-               'success' => true
+                'success' => true
             ], 201);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка создания вложения',
+                'message' => 'Ошибка создания вложения',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $attachment = TaskAttachment::find($id);
             if (!$attachment) {
                 return response()->json([
-                   'message' => 'Вложение не найдено',
-                   'success' => false
+                    'message' => 'Вложение не найдено',
+                    'success' => false
                 ], 404);
             }
             return response()->json([
-               'message' => 'Вложение',
+                'message' => 'Вложение',
                 'data' => new TaskAttachmentResource($attachment),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка получения вложения',
+                'message' => 'Ошибка получения вложения',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $attachment = TaskAttachment::find($id);
             if (!$attachment) {
                 return response()->json([
-                   'message' => 'Вложение не найдено',
-                   'success' => false
+                    'message' => 'Вложение не найдено',
+                    'success' => false
                 ], 404);
             }
             $attachment->update($request->all());
             return response()->json([
-               'message' => 'Вложение успешно изменено',
+                'message' => 'Вложение успешно изменено',
                 'data' => new TaskAttachmentResource($attachment),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка изменения вложения',
+                'message' => 'Ошибка изменения вложения',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             TaskAttachment::destroy($id);
             return response()->json([
-               'message' => 'Вложение успешно удалено',
-               'success' => true
+                'message' => 'Вложение успешно удалено',
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка удаления вложения',
+                'message' => 'Ошибка удаления вложения',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

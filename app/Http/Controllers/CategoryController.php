@@ -20,6 +20,7 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения категорий',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -41,6 +42,7 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             return response()->json([
                'message' => 'Ошибка создания категории',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -65,6 +67,7 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             return response()->json([
                'message' => 'Ошибка получения категории',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -95,6 +98,7 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             return response()->json([
                'message' => 'Ошибка изменения категории',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -120,6 +124,7 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             return response()->json([
                'message' => 'Ошибка удаления категории',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

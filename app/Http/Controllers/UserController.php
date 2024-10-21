@@ -56,7 +56,20 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try {
-            $validatedData = $request->validate([]);
+            $validatedData = $request->validate([
+                'login' => 'required|string|unique:users,login',
+                'password' => 'required|string',
+                'avatar' => 'required|string',
+                'first_name' => 'required|string',
+                'last_name' => 'required|string',
+                'patronymic' => 'string',
+                'phone' => 'string',
+                'email' => 'required|string|unique:users,email',
+                'is_subordinate' => 'required|boolean',
+                'organization_id' => 'required|number',
+            ]);
+
+            $validatedData['password'] = bcrypt($request->get('password'));
 
             $user = User::create($validatedData);
 

@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\ActivityType;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,6 +23,7 @@ class OrganizationResource extends JsonResource
             'address' => $this->address,
             'phone' => $this->phone,
             'activity_type' => new ActivityTypeResource(ActivityType::where('id', $this->activity_type_id)->first()),
+            'user' => new UserResource(User::find($this->user_id)->first()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

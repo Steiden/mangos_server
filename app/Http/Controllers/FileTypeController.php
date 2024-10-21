@@ -20,86 +20,95 @@ class FileTypeController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения типов файлов',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $fileType = FileType::create($request->all());
             return response()->json([
-               'message' => 'Тип файла создан',
+                'message' => 'Тип файла создан',
                 'data' => new FileTypeResource($fileType),
-               'success' => true
+                'success' => true
             ], 201);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка создания нового типа файла',
+                'message' => 'Ошибка создания нового типа файла',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $fileType = FileType::find($id);
 
             if (!$fileType) {
                 return response()->json([
-                   'message' => 'Тип файла не найден',
-                   'success' => false
+                    'message' => 'Тип файла не найден',
+                    'success' => false
                 ], 404);
             }
 
             $fileType->update($request->all());
             return response()->json([
-               'message' => 'Тип файла изменен',
+                'message' => 'Тип файла изменен',
                 'data' => new FileTypeResource($fileType),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка изменения типа файла',
+                'message' => 'Ошибка изменения типа файла',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             FileType::destroy($id);
             return response()->json([
-               'message' => 'Тип файла удален',
-               'success' => true
+                'message' => 'Тип файла удален',
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка удаления типа файла',
+                'message' => 'Ошибка удаления типа файла',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $fileType = FileType::find($id);
 
             if (!$fileType) {
                 return response()->json([
-                   'message' => 'Тип файла не найден',
-                   'success' => false
+                    'message' => 'Тип файла не найден',
+                    'success' => false
                 ], 404);
             }
 
             return response()->json([
-               'message' => 'Информация о типе файла',
+                'message' => 'Информация о типе файла',
                 'data' => new FileTypeResource($fileType),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка получения информации о типе файла',
+                'message' => 'Ошибка получения информации о типе файла',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

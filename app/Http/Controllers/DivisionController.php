@@ -20,98 +20,107 @@ class DivisionController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения подразделений',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $division = Division::find($id);
 
             if (!$division) {
                 return response()->json([
-                   'message' => 'Подразделение не найдено',
-                   'success' => false
+                    'message' => 'Подразделение не найдено',
+                    'success' => false
                 ], 404);
             }
 
             return response()->json([
-               'message' => 'Подразделение',
+                'message' => 'Подразделение',
                 'data' => new DivisionResource($division),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка получения подразделения',
+                'message' => 'Ошибка получения подразделения',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $division = Division::create($request->all());
 
             return response()->json([
-               'message' => 'Подразделение создано',
+                'message' => 'Подразделение создано',
                 'data' => new DivisionResource($division),
-               'success' => true
+                'success' => true
             ], 201);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка создания подразделения',
+                'message' => 'Ошибка создания подразделения',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $division = Division::find($id);
 
             if (!$division) {
                 return response()->json([
-                   'message' => 'Подразделение не найдено',
-                   'success' => false
+                    'message' => 'Подразделение не найдено',
+                    'success' => false
                 ], 404);
             }
 
             $division->update($request->all());
 
             return response()->json([
-               'message' => 'Подразделение изменено',
+                'message' => 'Подразделение изменено',
                 'data' => new DivisionResource($division),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка изменения подразделения',
+                'message' => 'Ошибка изменения подразделения',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             $division = Division::find($id);
 
             if (!$division) {
                 return response()->json([
-                   'message' => 'Подразделение не найдено',
-                   'success' => false
+                    'message' => 'Подразделение не найдено',
+                    'success' => false
                 ], 404);
             }
 
             $division->delete();
 
             return response()->json([
-               'message' => 'Подразделение удалено',
-               'success' => true
+                'message' => 'Подразделение удалено',
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка удаления подразделения',
+                'message' => 'Ошибка удаления подразделения',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

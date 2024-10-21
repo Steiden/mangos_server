@@ -20,89 +20,101 @@ class MessageController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения сообщений',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $message = Message::create($request->all());
             return response()->json([
-               'message' => 'Сообщение создано',
+                'message' => 'Сообщение создано',
                 'data' => new MessageResource($message),
-               'success' => true
+                'success' => true
             ], 201);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка создания сообщения',
+                'message' => 'Ошибка создания сообщения',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $message = Message::find($id);
             if (!$message) {
                 return response()->json([
-                   'message' => 'Сообщение не найдено',
+                    'message' => 'Сообщение не найдено',
+                    'success' => false,
                     'error' => 'Message not found'
                 ], 404);
             }
             return response()->json([
-               'message' => 'Сообщение',
+                'message' => 'Сообщение',
                 'data' => new MessageResource($message),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка получения сообщения',
+                'message' => 'Ошибка получения сообщения',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $message = Message::find($id);
             if (!$message) {
                 return response()->json([
-                   'message' => 'Сообщение не найдено',
+                    'message' => 'Сообщение не найдено',
+                    'success' => false,
                     'error' => 'Message not found'
                 ], 404);
             }
             $message->update($request->all());
             return response()->json([
-               'message' => 'Сообщение изменено',
+                'message' => 'Сообщение изменено',
                 'data' => new MessageResource($message),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка изменения сообщения',
+                'message' => 'Ошибка изменения сообщения',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             $message = Message::find($id);
             if (!$message) {
                 return response()->json([
-                   'message' => 'Сообщение не найдено',
+                    'message' => 'Сообщение не найдено',
+                    'success' => false,
                     'error' => 'Message not found'
                 ], 404);
             }
             $message->delete();
             return response()->json([
-               'message' => 'Сообщение удалено',
-               'success' => true
+                'message' => 'Сообщение удалено',
+                'success' => true
             ], 204);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка удаления сообщения',
+                'message' => 'Ошибка удаления сообщения',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

@@ -54,32 +54,34 @@ class FileController extends Controller
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $file = File::find($id);
 
             if (!$file) {
                 return response()->json([
-                   'message' => 'Файл не найден',
-                   'success' => false
+                    'message' => 'Файл не найден',
+                    'success' => false
                 ], 404);
             }
 
             return response()->json([
                 'message' => 'Файл',
                 'data' => new FileResource($file),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка получения файла',
+                'message' => 'Ошибка получения файла',
                 'error' => $e->getMessage(),
-               'success' => false
+                'success' => false
             ], 500);
         }
     }
 
-    public function update($id, Request $request) {
+    public function update($id, Request $request)
+    {
         try {
             $validatedData = $request->validate([]);
 
@@ -87,8 +89,8 @@ class FileController extends Controller
 
             if (!$file) {
                 return response()->json([
-                   'message' => 'Файл не найден',
-                   'success' => false
+                    'message' => 'Файл не найден',
+                    'success' => false
                 ], 404);
             }
 
@@ -97,41 +99,42 @@ class FileController extends Controller
             ]);
 
             return response()->json([
-               'message' => 'Информация о файле успешно изменена',
+                'message' => 'Информация о файле успешно изменена',
                 'data' => new FileResource($file),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка изменения файла',
+                'message' => 'Ошибка изменения файла',
                 'error' => $e->getMessage(),
-               'success' => false
+                'success' => false
             ], 500);
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             $file = File::find($id);
 
             if (!$file) {
                 return response()->json([
-                   'message' => 'Файл не найден',
-                   'success' => false
+                    'message' => 'Файл не найден',
+                    'success' => false
                 ], 404);
             }
 
             $file->delete();
 
             return response()->json([
-               'message' => 'Файл успешно удален',
-               'success' => true
+                'message' => 'Файл успешно удален',
+                'success' => true
             ], 204);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка удаления файла',
+                'message' => 'Ошибка удаления файла',
                 'error' => $e->getMessage(),
-               'success' => false
+                'success' => false
             ], 500);
         }
     }

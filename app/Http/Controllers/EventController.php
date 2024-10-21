@@ -20,89 +20,98 @@ class EventController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения событий',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $event = Event::create($request->all());
             return response()->json([
-               'message' => 'Событие создано',
+                'message' => 'Событие создано',
                 'data' => new EventResource($event),
-               'success' => true
+                'success' => true
             ], 201);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка создания события',
+                'message' => 'Ошибка создания события',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $event = Event::find($id);
             if (!$event) {
                 return response()->json([
-                   'message' => 'Событие не найдено',
-                   'success' => false
+                    'message' => 'Событие не найдено',
+                    'success' => false
                 ], 404);
             }
             return response()->json([
-               'message' => 'Событие',
+                'message' => 'Событие',
                 'data' => new EventResource($event),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка получения события',
+                'message' => 'Ошибка получения события',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $event = Event::find($id);
             if (!$event) {
                 return response()->json([
-                   'message' => 'Событие не найдено',
-                   'success' => false
+                    'message' => 'Событие не найдено',
+                    'success' => false
                 ], 404);
             }
             $event->update($request->all());
             return response()->json([
-               'message' => 'Событие изменено',
+                'message' => 'Событие изменено',
                 'data' => new EventResource($event),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка изменения события',
+                'message' => 'Ошибка изменения события',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             $event = Event::find($id);
             if (!$event) {
                 return response()->json([
-                   'message' => 'Событие не найдено',
-                   'success' => false
+                    'message' => 'Событие не найдено',
+                    'success' => false
                 ], 404);
             }
             $event->delete();
             return response()->json([
-               'message' => 'Событие удалено',
-               'success' => true
+                'message' => 'Событие удалено',
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка удаления события',
+                'message' => 'Ошибка удаления события',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

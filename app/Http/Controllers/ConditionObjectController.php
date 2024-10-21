@@ -20,89 +20,98 @@ class ConditionObjectController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения объектов условий',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
-    
-    public function show($id) {
+
+    public function show($id)
+    {
         try {
             $conditionObject = ConditionObject::find($id);
             if (!$conditionObject) {
                 return response()->json([
-                   'message' => 'Объект условий не найден',
-                   'success' => false
+                    'message' => 'Объект условий не найден',
+                    'success' => false
                 ], 404);
             }
             return response()->json([
-               'message' => 'Объект условий',
+                'message' => 'Объект условий',
                 'data' => new ConditionObjectResource($conditionObject),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка получения объекта условий',
+                'message' => 'Ошибка получения объекта условий',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $conditionObject = ConditionObject::create($request->all());
             return response()->json([
-               'message' => 'Объект условий создан',
+                'message' => 'Объект условий создан',
                 'data' => new ConditionObjectResource($conditionObject),
-               'success' => true
+                'success' => true
             ], 201);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка создания объекта условий',
+                'message' => 'Ошибка создания объекта условий',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $conditionObject = ConditionObject::find($id);
             if (!$conditionObject) {
                 return response()->json([
-                   'message' => 'Объект условий не найден',
-                   'success' => false
+                    'message' => 'Объект условий не найден',
+                    'success' => false
                 ], 404);
             }
             $conditionObject->update($request->all());
             return response()->json([
-               'message' => 'Объект условий изменен',
+                'message' => 'Объект условий изменен',
                 'data' => new ConditionObjectResource($conditionObject),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка изменения объекта условий',
+                'message' => 'Ошибка изменения объекта условий',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             $conditionObject = ConditionObject::find($id);
             if (!$conditionObject) {
                 return response()->json([
-                   'message' => 'Объект условий не найден',
-                   'success' => false
+                    'message' => 'Объект условий не найден',
+                    'success' => false
                 ], 404);
             }
             $conditionObject->delete();
             return response()->json([
-               'message' => 'Объект условий удален',
-               'success' => true
+                'message' => 'Объект условий удален',
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка удаления объекта условий',
+                'message' => 'Ошибка удаления объекта условий',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

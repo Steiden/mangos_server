@@ -104,25 +104,26 @@ class OrganizationEmployeeController extends Controller
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             $organizationEmployee = OrganizationEmployee::find($id);
             if (!$organizationEmployee) {
                 return response()->json([
-                   'success' => false,
-                   'message' => 'Сотрудник организации не найден'
+                    'success' => false,
+                    'message' => 'Сотрудник организации не найден'
                 ], 404);
             }
 
             $organizationEmployee->delete();
             return response()->json([
-               'success' => true,
-               'message' => 'Сотрудник организации удален'
+                'success' => true,
+                'message' => 'Сотрудник организации удален'
             ]);
         } catch (\Exception $e) {
             return response()->json([
-               'success' => false,
-               'message' => 'Ошибка при удалении сотрудника организации',
+                'success' => false,
+                'message' => 'Ошибка при удалении сотрудника организации',
                 'error' => $e->getMessage()
             ], 500);
         }

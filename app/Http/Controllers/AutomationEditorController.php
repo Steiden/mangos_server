@@ -20,6 +20,7 @@ class AutomationEditorController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения редакторов автоматизаций',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -42,6 +43,7 @@ class AutomationEditorController extends Controller
         } catch (Exception $e) {
             return response()->json([
                'message' => 'Ошибка получения редактора автоматизации',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -58,6 +60,7 @@ class AutomationEditorController extends Controller
         } catch (Exception $e) {
             return response()->json([
                'message' => 'Ошибка создания редактора автоматизации',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -81,6 +84,7 @@ class AutomationEditorController extends Controller
         } catch (Exception $e) {
             return response()->json([
                'message' => 'Ошибка изменения редактора автоматизации',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -103,6 +107,7 @@ class AutomationEditorController extends Controller
         } catch (Exception $e) {
             return response()->json([
                'message' => 'Ошибка удаления редактора автоматизации',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

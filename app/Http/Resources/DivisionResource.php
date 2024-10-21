@@ -18,7 +18,7 @@ class DivisionResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'organization' => new OrganizationResource(Organization::where('id', $this->organization_id)->first()),
+            'organization' => new OrganizationResource(Organization::find($this->organization_id)->first()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

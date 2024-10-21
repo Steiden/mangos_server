@@ -20,6 +20,7 @@ class ChatController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения чатов',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -36,6 +37,7 @@ class ChatController extends Controller
         } catch (Exception $e) {
             return response()->json([
                'message' => 'Ошибка создания чата',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -58,6 +60,7 @@ class ChatController extends Controller
         } catch (Exception $e) {
             return response()->json([
                'message' => 'Ошибка получения чата',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -81,6 +84,7 @@ class ChatController extends Controller
         } catch (Exception $e) {
             return response()->json([
                'message' => 'Ошибка изменения чата',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -103,6 +107,7 @@ class ChatController extends Controller
         } catch (Exception $e) {
             return response()->json([
                'message' => 'Ошибка удаления чата',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

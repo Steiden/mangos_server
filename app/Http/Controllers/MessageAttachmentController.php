@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class MessageAttachmentController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         try {
             $messageAttachments = MessageAttachment::all();
             return response()->json([
@@ -16,8 +17,7 @@ class MessageAttachmentController extends Controller
                 "message" => "Вложения сообщений",
                 "data" => MessageAttachmentResource::collection($messageAttachments)
             ]);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 "success" => false,
                 "message" => "Ошибка при получении вложений сообщений",
@@ -26,7 +26,8 @@ class MessageAttachmentController extends Controller
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $messageAttachment = MessageAttachment::create($request->all());
             return response()->json([
@@ -34,8 +35,7 @@ class MessageAttachmentController extends Controller
                 "message" => "Вложение сообщения создано",
                 "data" => new MessageAttachmentResource($messageAttachment)
             ]);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 "success" => false,
                 "message" => "Ошибка при создании вложения сообщения",
@@ -44,7 +44,8 @@ class MessageAttachmentController extends Controller
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $messageAttachment = MessageAttachment::find($id);
             if (!$messageAttachment) {
@@ -58,8 +59,7 @@ class MessageAttachmentController extends Controller
                 "message" => "Вложение сообщения",
                 "data" => new MessageAttachmentResource($messageAttachment)
             ]);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 "success" => false,
                 "message" => "Ошибка при получении вложения сообщения",
@@ -68,7 +68,8 @@ class MessageAttachmentController extends Controller
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $messageAttachment = MessageAttachment::find($id);
             if (!$messageAttachment) {
@@ -83,8 +84,7 @@ class MessageAttachmentController extends Controller
                 "message" => "Вложение сообщения изменено",
                 "data" => new MessageAttachmentResource($messageAttachment)
             ]);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 "success" => false,
                 "message" => "Ошибка при изменении вложения сообщения",
@@ -93,7 +93,8 @@ class MessageAttachmentController extends Controller
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             $messageAttachment = MessageAttachment::find($id);
             if (!$messageAttachment) {
@@ -107,8 +108,7 @@ class MessageAttachmentController extends Controller
                 "success" => true,
                 "message" => "Вложение сообщения удалено"
             ]);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 "success" => false,
                 "message" => "Ошибка при удалении вложения сообщения",

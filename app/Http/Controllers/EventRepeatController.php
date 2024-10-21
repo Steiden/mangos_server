@@ -20,95 +20,104 @@ class EventRepeatController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Повторений событий',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $eventRepeat = EventRepeat::create($request->all());
 
             return response()->json([
-               'message' => 'Событие повторено',
+                'message' => 'Событие повторено',
                 'data' => new EventRepeatResource($eventRepeat),
-               'success' => true
+                'success' => true
             ], 201);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Событие повторено',
+                'message' => 'Событие повторено',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $eventRepeat = EventRepeat::find($id);
             if (!$eventRepeat) {
                 return response()->json([
-                   'message' => 'Повторения события не найдены',
-                   'success' => false
+                    'message' => 'Повторения события не найдены',
+                    'success' => false
                 ], 404);
             }
 
             $eventRepeat->update($request->all());
 
             return response()->json([
-               'message' => 'Изменения сохранены',
+                'message' => 'Изменения сохранены',
                 'data' => new EventRepeatResource($eventRepeat),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Изменения сохранены',
+                'message' => 'Изменения сохранены',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             $eventRepeat = EventRepeat::find($id);
             if (!$eventRepeat) {
                 return response()->json([
-                   'message' => 'Повторения события не найдены',
-                   'success' => false
+                    'message' => 'Повторения события не найдены',
+                    'success' => false
                 ], 404);
             }
 
             $eventRepeat->delete();
 
             return response()->json([
-               'message' => 'Повторения события удалены',
-               'success' => true
+                'message' => 'Повторения события удалены',
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Повторения события удалены',
+                'message' => 'Повторения события удалены',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $eventRepeat = EventRepeat::find($id);
             if (!$eventRepeat) {
                 return response()->json([
-                   'message' => 'Повторения события не найдены',
-                   'success' => false
+                    'message' => 'Повторения события не найдены',
+                    'success' => false
                 ], 404);
             }
 
             return response()->json([
-               'message' => 'Повторения события',
+                'message' => 'Повторения события',
                 'data' => new EventRepeatResource($eventRepeat),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Повторения события',
+                'message' => 'Повторения события',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }

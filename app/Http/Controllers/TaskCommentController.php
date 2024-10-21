@@ -20,89 +20,98 @@ class TaskCommentController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Ошибка получения комментариев задач',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $comment = TaskComment::create($request->all());
             return response()->json([
                 'message' => 'Комментарий добавлен',
                 'data' => new TaskCommentResource($comment),
-               'success' => true
+                'success' => true
             ], 201);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка создания комментария',
+                'message' => 'Ошибка создания комментария',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $comment = TaskComment::find($id);
             if (!$comment) {
                 return response()->json([
-                   'message' => 'Комментарий не найден',
-                   'success' => false
+                    'message' => 'Комментарий не найден',
+                    'success' => false
                 ], 404);
             }
             return response()->json([
-               'message' => 'Комментарий',
+                'message' => 'Комментарий',
                 'data' => new TaskCommentResource($comment),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка получения комментария',
+                'message' => 'Ошибка получения комментария',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $comment = TaskComment::find($id);
             if (!$comment) {
                 return response()->json([
-                   'message' => 'Комментарий не найден',
-                   'success' => false
+                    'message' => 'Комментарий не найден',
+                    'success' => false
                 ], 404);
             }
             $comment->update($request->all());
             return response()->json([
-               'message' => 'Комментарий изменен',
+                'message' => 'Комментарий изменен',
                 'data' => new TaskCommentResource($comment),
-               'success' => true
+                'success' => true
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка изменения комментария',
+                'message' => 'Ошибка изменения комментария',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             $comment = TaskComment::find($id);
             if (!$comment) {
                 return response()->json([
-                   'message' => 'Комментарий не найден',
-                   'success' => false
+                    'message' => 'Комментарий не найден',
+                    'success' => false
                 ], 404);
             }
             $comment->delete();
             return response()->json([
-               'message' => 'Комментарий удален',
-               'success' => true
+                'message' => 'Комментарий удален',
+                'success' => true
             ], 204);
         } catch (Exception $e) {
             return response()->json([
-               'message' => 'Ошибка удаления комментария',
+                'message' => 'Ошибка удаления комментария',
+                'success' => false,
                 'error' => $e->getMessage()
             ], 500);
         }
