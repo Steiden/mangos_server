@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -84,6 +85,33 @@ class AuthController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Ошибка обновления токена',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function me(Request $request)
+    {
+        try {
+            $user = $request->user();
+
+            if (!$user) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Пользователь не авторизован',
+                ], 401);
+            }
+
+            return response()->json([
+                'success' => true,
+                'data' => new UserResource($user),
+                'message' => 'Информация о пользователе'
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Ошибка получения информации о пользователе: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Ошибка получения информации о пользователе',
                 'error' => $e->getMessage()
             ], 500);
         }

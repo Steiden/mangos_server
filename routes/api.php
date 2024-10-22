@@ -84,8 +84,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::post('logout', [AuthController::class, 'logout']);
+    Route::get('refresh', [AuthController::class, 'refresh']);
+    Route::get('logout', [AuthController::class, 'logout']);
+    Route::get('me', [AuthController::class, 'me']);
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
