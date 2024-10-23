@@ -10,4 +10,5 @@ class ChatMember extends Model
     use HasFactory;
 
     protected $table = 'chat_members';
+    protected $fillable = [];
 }

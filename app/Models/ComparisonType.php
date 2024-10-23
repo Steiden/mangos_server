@@ -10,4 +10,5 @@ class ComparisonType extends Model
     use HasFactory;
 
     protected $table = 'comparison_types';
+    protected $fillable = ['name'];
 }

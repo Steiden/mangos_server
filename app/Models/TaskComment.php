@@ -10,4 +10,5 @@ class TaskComment extends Model
     use HasFactory;
 
     protected $table = 'task_comments';
+    protected $fillable = [];
 }

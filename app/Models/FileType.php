@@ -10,4 +10,5 @@ class FileType extends Model
     use HasFactory;
 
     protected $table = 'file_types';
+    protected $fillable = ['name'];
 }

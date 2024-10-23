@@ -10,4 +10,5 @@ class TaskPerformer extends Model
     use HasFactory;
 
     protected $table = 'task_performers';
+    protected $fillable = [];
 }

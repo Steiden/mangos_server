@@ -10,4 +10,5 @@ class ChatMessage extends Model
     use HasFactory;
 
     protected $table = 'chat_messages';
+    protected $fillable = [];
 }

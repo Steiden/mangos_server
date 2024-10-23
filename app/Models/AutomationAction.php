@@ -10,4 +10,7 @@ class AutomationAction extends Model
     use HasFactory;
 
     protected $table = 'automation_actions';
+    protected $fillable = [
+        'name'
+    ];
 }

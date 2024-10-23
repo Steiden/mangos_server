@@ -10,4 +10,5 @@ class AutomationEditor extends Model
     use HasFactory;
 
     protected $table = 'automation_editors';
+    protected $fillable = [];
 }

@@ -10,4 +10,5 @@ class EventRepeat extends Model
     use HasFactory;
 
     protected $table = 'event_repeats';
+    protected $fillable = ['name'];
 }
