@@ -36,7 +36,9 @@ class AuthController extends Controller
 
             return response()->json([
                 'success' => true,
-                'token' => $token,
+                'data' => [
+                    'token' => $token
+                ],
                 'message' => 'Авторизация успешна'
             ]);
         } catch (\Exception $e) {
@@ -77,7 +79,9 @@ class AuthController extends Controller
 
             return response()->json([
                 'success' => true,
-                'token' => $newToken,
+                'data' => [
+                    'token' => $newToken,
+                ],
                 'message' => 'Токен успешно обновлен'
             ]);
         } catch (\Exception $e) {
@@ -97,9 +101,10 @@ class AuthController extends Controller
 
             if (!$user) {
                 return response()->json([
-                    'success' => false,
+                    'success' => true,
                     'message' => 'Пользователь не авторизован',
-                ], 401);
+                    'data' => null
+                ], 200);
             }
 
             return response()->json([
