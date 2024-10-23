@@ -33,7 +33,6 @@ class AuthController extends Controller
             }
 
             $token = $user->createToken("access_token")->plainTextToken;
-            Log::info('Пользователь '. $user->name.'авторизовался с токеном: '. $token);
 
             return response()->json([
                 'success' => true,
