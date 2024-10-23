@@ -43,50 +43,53 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Routes for:
-    // activity_types
-    // automation_actions
-    // automation_conditions
-    // automations
-    // automation_editors
-    // categories
-    // chats
-    // chat_members
-    // chat_messages
-    // chat_moderators
-    // comparison_types
-    // condition_objects
-    // condition_value_objects
-    // divisions
-    // events
-    // event_members
-    // event_repeats
-    // execution_statuses
-    // files
-    // file_types
-    // messages
-    // message_attachments
-    // message_types
-    // notifications
-    // organizations
-    // organization_employees
-    // posts
-    // projects
-    // project_members
-    // roles
-    // tags
-    // task_attachments
-    // task_comments
-    // tasks
-    // task_performers
-    // task_priorities
-    // task_tags
-    // users
+// activity_types
+// automation_actions
+// automation_conditions
+// automations
+// automation_editors
+// categories
+// chats
+// chat_members
+// chat_messages
+// chat_moderators
+// comparison_types
+// condition_objects
+// condition_value_objects
+// divisions
+// events
+// event_members
+// event_repeats
+// execution_statuses
+// files
+// file_types
+// messages
+// message_attachments
+// message_types
+// notifications
+// organizations
+// organization_employees
+// posts
+// projects
+// project_members
+// roles
+// tags
+// task_attachments
+// task_comments
+// tasks
+// task_performers
+// task_priorities
+// task_tags
+// users
 
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
-    Route::get('refresh', [AuthController::class, 'refresh']);
-    Route::get('logout', [AuthController::class, 'logout']);
-    Route::get('me', [AuthController::class, 'me']);
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('refresh', [AuthController::class, 'refresh']);
+        Route::get('logout', [AuthController::class, 'logout']);
+        Route::get('me', [AuthController::class, 'me']);
+    });
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {

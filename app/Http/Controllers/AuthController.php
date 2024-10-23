@@ -17,7 +17,7 @@ class AuthController extends Controller
                 'password' => 'required|string'
             ]);
 
-            $user = User::where(['login' => $validatedData])->first();
+            $user = User::where('login', $validatedData['login'])->first();
             if (!$user) {
                 return response()->json([
                     'success' => false,
@@ -32,7 +32,8 @@ class AuthController extends Controller
                 ], 401);
             }
 
-            $token = $user->createToken('authToken')->plainTextToken;
+            $token = $user->createToken("access_token")->plainTextToken;
+            Log::info('Пользователь '. $user->name.'авторизовался с токеном: '. $token);
 
             return response()->json([
                 'success' => true,
@@ -54,8 +55,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         try {
-            $token = $request->user()->token();
-            $token->revoke();
+            $request->user()->tokens()->delete();
 
             return response()->json([
                 'success' => true,
