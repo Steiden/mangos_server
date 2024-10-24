@@ -19,7 +19,7 @@ class ChatShortResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'avatar' => $this->avatar,
-            'user' => new UserResource(User::where('id', $this->user_id)->first()),
+            'user' => new UserShortResource(User::where('id', $this->user_id)->first()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

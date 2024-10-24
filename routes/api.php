@@ -51,7 +51,6 @@ use Illuminate\Support\Facades\Route;
 // categories
 // chats
 // chat_members
-// chat_messages
 // chat_moderators
 // comparison_types
 // condition_objects
@@ -75,7 +74,6 @@ use Illuminate\Support\Facades\Route;
 // roles
 // tags
 // task_attachments
-// task_comments
 // tasks
 // task_performers
 // task_priorities
@@ -101,7 +99,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('chats', ChatController::class);
     Route::apiResource('chat_members', ChatMemberController::class);
-    Route::apiResource('chat_messages', ChatMessageController::class);
     Route::apiResource('chat_moderators', ChatModeratorController::class);
     Route::apiResource('comparison_types', ComparisonTypeController::class);
     Route::apiResource('condition_objects', ConditionObjectController::class);
@@ -125,7 +122,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('roles', RoleController::class);
     Route::apiResource('tags', TagController::class);
     Route::apiResource('task_attachments', TaskAttachmentController::class);
-    Route::apiResource('task_comments', TaskCommentController::class);
     Route::apiResource('tasks', TaskController::class);
     Route::apiResource('task_performers', TaskPerformerController::class);
     Route::apiResource('task_priorities', TaskPriorityController::class);

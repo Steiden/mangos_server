@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Chat;
+use App\Models\ChatMember;
 use App\Models\Division;
 use App\Models\Organization;
 use App\Models\Post;
@@ -22,8 +24,6 @@ class UserResource extends JsonResource
         $role = Role::find($this->role_id);
         $user = User::find($this->user_id);
         $post = Post::find($this->post_id);
-        $division = $post ? Division::find($post->division_id) : null;
-        $organization = $division ? Organization::find($division->organization_id) : null;
 
         return [
             'id' => $this->id,
@@ -38,11 +38,13 @@ class UserResource extends JsonResource
             'verified_at' => $this->verified_at,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
-            'role' => $role ? new RoleResource($role) : null,
-            'post' => $post ? new PostShortResource($post) : null,
-            'division' => $division ? new DivisionShortResource($division) : null,
-            'user' => $user ? new UserShortResource($user) : null,
-            'organization' => $organization ? new OrganizationShortResource($organization) : null,
+            'role' => new RoleResource($role),
+            'post' => new PostShortResource($post),
+            'user' => new UserShortResource($user),
+            'chats' => ChatShortResource::collection(Chat::whereIn(
+                'id',
+                ChatMember::where('user_id', $this->id)->pluck('chat_id')->toArray()
+            )->get())
         ];
     }
 }
