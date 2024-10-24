@@ -27,7 +27,12 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('condition_value_objects', function (Blueprint $table) {
-            //
+            $table->string('attribute_name')->nullable(false)->change();
+            $table->string('value')->nullable(false)->change();
+            $table->unsignedBigInteger('task_tag_id')->nullable(false)->change();
+            $table->unsignedBigInteger('category_id')->nullable(false)->change();
+            $table->unsignedBigInteger('execution_status_id')->nullable(false)->change();
+            $table->unsignedBigInteger('task_priority_id')->nullable(false)->change();
         });
     }
 };
