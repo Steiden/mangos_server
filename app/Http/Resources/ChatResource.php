@@ -22,8 +22,8 @@ class ChatResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'avatar' => $this->avatar,
-            'user' => new UserResource(User::where('id', $this->user_id)->first()),
-            'messages' => MessageResource::collection(Message::where('id', $this->user_id)->get()),
+            'user' => new UserShortResource(User::where('id', $this->user_id)->first()),
+            'messages' => MessageShortResource::collection(Message::where('chat_id', $this->id)->get()),
             'members' => UserResource::collection(User::whereIn(
                 'id',
                 ChatMember::where('chat_id', $this->id)->pluck('user_id')->toArray()
