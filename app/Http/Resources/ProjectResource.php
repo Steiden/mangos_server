@@ -23,7 +23,7 @@ class ProjectResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'avatar' => $this->avatar,
-            'execution_status' => new ExecutionStatusResource(ExecutionStatus::where('id', $this->execeution_status_id)->first()),
+            'execution_status' => new ExecutionStatusResource(ExecutionStatus::where('id', $this->execution_status_id)->first()),
             'organization_id' => new OrganizationResource(Organization::where('id', $this->organization_id)->first()),
             'chat' => new ChatResource(Chat::where('id', $this->chat_id)->firstOr([])),
             'user' => new UserResource(User::find($this->user_id)->first()),
