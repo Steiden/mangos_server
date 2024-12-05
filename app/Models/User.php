@@ -21,9 +21,6 @@ class User extends Model
         'patronymic',
         'phone',
         'email',
-        'is_subordinate',
         'verified_at',
-        'post_id',
-        'user_id'
     ];
 }

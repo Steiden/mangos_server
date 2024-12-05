@@ -8,7 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class MessageAttachment extends Model
 {
     use HasFactory;
-
-    protected $table = 'message_attachments';
-    protected $fillable = [];
 }

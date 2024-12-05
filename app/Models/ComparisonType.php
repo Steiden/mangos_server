@@ -8,7 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class ComparisonType extends Model
 {
     use HasFactory;
-
-    protected $table = 'comparison_types';
-    protected $fillable = ['name'];
 }
