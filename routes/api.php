@@ -51,7 +51,6 @@ use Illuminate\Support\Facades\Route;
 // categories
 // chats
 // chat_members
-// chat_moderators
 // comparison_types
 // condition_objects
 // condition_value_objects
@@ -82,6 +81,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('refresh', [AuthController::class, 'refresh']);
@@ -99,7 +99,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('chats', ChatController::class);
     Route::apiResource('chat_members', ChatMemberController::class);
-    Route::apiResource('chat_moderators', ChatModeratorController::class);
     Route::apiResource('comparison_types', ComparisonTypeController::class);
     Route::apiResource('condition_objects', ConditionObjectController::class);
     Route::apiResource('condition_value_objects', ConditionValueObjectController::class);

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class AutomationEditor extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'automation_id',
+        'user_id'
+    ];
 }

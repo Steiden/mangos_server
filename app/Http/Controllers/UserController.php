@@ -65,7 +65,6 @@ class UserController extends Controller
                 'patronymic' => 'string',
                 'phone' => 'string',
                 'email' => 'required|string|unique:users,email',
-                'is_subordinate' => 'boolean',
                 'organization_id' => 'integer',
             ]);
 

@@ -51,6 +51,40 @@ class AuthController extends Controller
         }
     }
 
+    public function register(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'login' => 'required|string|unique:users,login',
+                'password' => 'required|string',
+                'avatar' => '',
+                'first_name' => 'required|string',
+                'last_name' => 'required|string',
+                'patronymic' => 'string',
+                'phone' => 'string',
+                'email' => 'required|string|unique:users,email',
+                'organization_id' => 'integer',
+            ]);
+
+            $validatedData['password'] = bcrypt($request->get('password'));
+
+            $user = User::create($validatedData);
+
+            return response()->json([
+                'message' => 'Регистрация прошла успешно',
+                'data' => new UserResource($user),
+                'success' => true
+            ], 201);
+        } catch (\Exception $e) {
+            Log::error('Ошибка регистрации: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Ошибка регистрации',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
     public function logout(Request $request)
     {
         try {
