@@ -18,8 +18,8 @@ class ProjectMemberResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'project' => new ProjectResource(Project::where('id', $this->project_id)->first()),
-            'user' => new UserResource(User::where('id', $this->user_id)->first()),
+            'project' => new ProjectShortResource(Project::where('id', $this->project_id)->first()),
+            'user' => new UserShortResource(User::where('id', $this->user_id)->first()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

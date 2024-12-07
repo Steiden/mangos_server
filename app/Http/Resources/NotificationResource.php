@@ -20,7 +20,7 @@ class NotificationResource extends JsonResource
             'title' => $this->title,
             'text' => $this->text,
             'is_read' => $this->is_read,
-            'user' => new UserResource(User::where('id', $this->user_id)->first()),
+            'user' => new UserShortResource(User::where('id', $this->user_id)->first()),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }

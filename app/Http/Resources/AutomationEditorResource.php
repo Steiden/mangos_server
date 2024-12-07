@@ -19,7 +19,7 @@ class AutomationEditorResource extends JsonResource
         return [
             'id' => $this->id,
             'automation' => new AutomationResource(Automation::where('id', $this->automation_id)->first()),
-            'user' => new UserResource(User::where('id', $this->user_id)->first()),
+            'user' => new UserShortResource(User::where('id', $this->user_id)->first()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

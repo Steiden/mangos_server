@@ -23,7 +23,7 @@ class EventResource extends JsonResource
             'started_at' => $this->started_at,
             'finished_at' => $this->finished_at,
             'is_important' => $this->is_important,
-            'user' => new UserResource(User::where('id', $this->user_id)->first()),
+            'user' => new UserShortResource(User::where('id', $this->user_id)->first()),
             'event_repeat' => new EventRepeatResource(EventRepeat::where('id', $this->event_repeat_id)->first()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

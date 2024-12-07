@@ -18,8 +18,8 @@ class OrganizationEmployeeResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'organization' => new OrganizationResource(Organization::find($this->organization_id)),
-            'user' => new UserResource(User::find($this->user_id)),
+            'organization' => new OrganizationShortResource(Organization::find($this->organization_id)),
+            'user' => new UserShortResource(User::find($this->user_id)),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];

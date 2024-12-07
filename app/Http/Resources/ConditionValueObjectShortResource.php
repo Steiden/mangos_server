@@ -2,12 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Event;
-use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ConditionObjectResource extends JsonResource
+class ConditionValueObjectShortResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +16,12 @@ class ConditionObjectResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'task' => new TaskResource(Task::where(['id' => $this->task_id])->firstOr([])),
-            'event' => new EventResource(Event::where(['id' => $this->event_id])->firstOr([])),
+            'attribute_name' => $this->attribute_name,
+            'value' => $this->value,
+            'task_tag_id' => $this->task_tag_id,
+            'category_id' => $this->category_id,
+            'execution_status_id' => $this->execution_status_id,    
+            'task_priority_id' => $this->task_priority_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

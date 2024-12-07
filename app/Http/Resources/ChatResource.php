@@ -30,7 +30,7 @@ class ChatResource extends JsonResource
             )->get()),
             'moderators' => UserResource::collection(User::whereIn(
                 'id',
-                ChatModerator::where('chat_id', $this->id)->pluck('user_id')->toArray()
+                ChatMember::where('chat_id', $this->id)->where('id_moderator', true)->pluck('user_id')->toArray()
             )->get()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

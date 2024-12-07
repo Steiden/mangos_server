@@ -18,7 +18,7 @@ class TaskTagResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'task' => new TaskResource(Task::where('id', $this->task_id)->first()),
+            'task' => new TaskShortResource(Task::where('id', $this->task_id)->first()),
             'tag' => new TagResource(Tag::where('id', $this->tag_id)->first()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

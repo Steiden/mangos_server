@@ -18,7 +18,7 @@ class TaskAttachmentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'task' => new TaskResource(Task::where('id', $this->task_id)->first()),
+            'task' => new TaskShortResource(Task::where('id', $this->task_id)->first()),
             'file' => new FileResource(File::where('id', $this->file_id)->first()),
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),

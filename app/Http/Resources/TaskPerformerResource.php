@@ -18,8 +18,8 @@ class TaskPerformerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'task' => new TaskResource(Task::where('id', $this->task_id)->first()),
-            'user' => new UserResource(User::where('id', $this->user_id)->first()),
+            'task' => new TaskShortResource(Task::where('id', $this->task_id)->first()),
+            'user' => new UserShortResource(User::where('id', $this->user_id)->first()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

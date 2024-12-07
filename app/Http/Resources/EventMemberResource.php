@@ -19,7 +19,7 @@ class EventMemberResource extends JsonResource
         return [
             'id' => $this->id,
             'event' => new EventResource(Event::where('id', $this->event_id)->first()),
-            'user' => new UserResource(User::where('id', $this->user_id)),
+            'user' => new UserShortResource(User::where('id', $this->user_id)),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

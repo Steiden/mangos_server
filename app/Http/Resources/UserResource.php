@@ -34,13 +34,10 @@ class UserResource extends JsonResource
             'patronymic' => $this->patronymic,
             'phone' => $this->phone,
             'email' => $this->email,
-            'is_subordinate' => $this->is_subordinate,
             'verified_at' => $this->verified_at,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'role' => new RoleResource($role),
-            'post' => new PostShortResource($post),
-            'user' => new UserShortResource($user),
             'chats' => ChatShortResource::collection(Chat::whereIn(
                 'id',
                 ChatMember::where('user_id', $this->id)->pluck('chat_id')->toArray()
