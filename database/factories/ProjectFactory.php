@@ -26,7 +26,7 @@ class ProjectFactory extends Factory
             'avatar' => $this->faker->imageUrl(),
             'execution_status_id' => ExecutionStatus::all()->random()->id,
             'organization_id' => Organization::all()->random()->id,
-            'chat_id' => Chat::all()->random()->id,
+            // 'chat_id' => Chat::all()->random()->id,
             'user_id' => User::all()->random()->id
         ];
     }

@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('login');
             $table->string('password');
-            $table->string('avatar');
-            $table->string('first_name');
-            $table->string('second_name');
-            $table->string('patronymic');
-            $table->string('phone');
+            $table->string('avatar')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('second_name')->nullable();
+            $table->string('patronymic')->nullable();
+            $table->string('phone')->nullable();
             $table->string('email');
-            $table->dateTime('verified_at');
-            $table->unsignedBigInteger('role_id');
+            $table->dateTime('verified_at')->nullable();
+            $table->unsignedBigInteger('role_id')->default(2);
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('roles');

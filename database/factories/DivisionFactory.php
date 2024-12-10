@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Organization;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,8 @@ class DivisionFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word,
-            'organization_id' => Organization::all()->random()->id
+            'organization_id' => Organization::all()->random()->id,
+            'user_id' => User::all()->random()->id
         ];
     }
 }

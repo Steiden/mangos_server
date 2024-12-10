@@ -24,15 +24,15 @@ class UserFactory extends Factory
             'password' => $this->faker->password(),
             'avatar' => $this->faker->imageUrl(),
             'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
+            'second_name' => $this->faker->lastName(),
             'patronymic' => $this->faker->name(),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->email(),
-            'is_subordinate' => $this->faker->boolean(),
+            // 'is_subordinate' => $this->faker->boolean(),
             'verified_at' => $this->faker->dateTimeBetween("-2 month"),
             'role_id' => Role::all()->random()->id,
-            'post_id' => Post::all()->random()->id,
-            'user_id' => User::all()->random()->id,
+            // 'post_id' => Post::all()->random()->id,
+            // 'user_id' => User::all()->random()->id,
         ];
     }
 }

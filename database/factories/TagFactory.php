@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Organization;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class TagFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word,
+            'organization_id' => Organization::all()->random()->id
         ];
     }
 }

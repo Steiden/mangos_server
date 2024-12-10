@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TaskPerformerResource;
-use App\Models\TaskPerformer;
+use App\Http\Resources\TaskMemberResource;
+use App\Models\TaskMember;
 use Exception;
 use Illuminate\Http\Request;
 
-class TaskPerformerController extends Controller
+class TaskMemberController extends Controller
 {
     public function index()
     {
         try {
             return response()->json([
                 'message' => 'Исполнители задач',
-                'data' => TaskPerformerResource::collection(TaskPerformer::all()),
+                'data' => TaskMemberResource::collection(TaskMember::all()),
                 'success' => true
             ], 200);
         } catch (Exception $e) {
@@ -29,10 +29,10 @@ class TaskPerformerController extends Controller
     public function store(Request $request)
     {
         try {
-            $taskPerformer = TaskPerformer::create($request->all());
+            $TaskMember = TaskMember::create($request->all());
             return response()->json([
                 'message' => 'Исполнитель задач создан',
-                'data' => new TaskPerformerResource($taskPerformer),
+                'data' => new TaskMemberResource($TaskMember),
                 'success' => true
             ], 201);
         } catch (Exception $e) {
@@ -47,17 +47,17 @@ class TaskPerformerController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $taskPerformer = TaskPerformer::find($id);
-            if (!$taskPerformer) {
+            $TaskMember = TaskMember::find($id);
+            if (!$TaskMember) {
                 return response()->json([
                     'message' => 'Исполнитель задач не найден',
                     'success' => false
                 ], 404);
             }
-            $taskPerformer->update($request->all());
+            $TaskMember->update($request->all());
             return response()->json([
                 'message' => 'Исполнитель задач изменен',
-                'data' => new TaskPerformerResource($taskPerformer),
+                'data' => new TaskMemberResource($TaskMember),
                 'success' => true
             ], 200);
         } catch (Exception $e) {
@@ -72,14 +72,14 @@ class TaskPerformerController extends Controller
     public function destroy($id)
     {
         try {
-            $taskPerformer = TaskPerformer::find($id);
-            if (!$taskPerformer) {
+            $TaskMember = TaskMember::find($id);
+            if (!$TaskMember) {
                 return response()->json([
                     'message' => 'Исполнитель задач не найден',
                     'success' => false
                 ], 404);
             }
-            $taskPerformer->delete();
+            $TaskMember->delete();
             return response()->json([
                 'message' => 'Исполнитель задач удален',
                 'success' => true
@@ -96,8 +96,8 @@ class TaskPerformerController extends Controller
     public function show($id)
     {
         try {
-            $taskPerformer = TaskPerformer::find($id);
-            if (!$taskPerformer) {
+            $TaskMember = TaskMember::find($id);
+            if (!$TaskMember) {
                 return response()->json([
                     'message' => 'Исполнитель задач не найден',
                     'success' => false
@@ -105,7 +105,7 @@ class TaskPerformerController extends Controller
             }
             return response()->json([
                 'message' => 'Исполнитель задач получен',
-                'data' => new TaskPerformerResource($taskPerformer),
+                'data' => new TaskMemberResource($TaskMember),
                 'success' => true
             ], 200);
         } catch (Exception $e) {

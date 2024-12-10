@@ -59,7 +59,7 @@ class AuthController extends Controller
                 'password' => 'required|string',
                 'avatar' => '',
                 'first_name' => 'required|string',
-                'last_name' => 'required|string',
+                'second_name' => 'required|string',
                 'patronymic' => 'string',
                 'phone' => 'string',
                 'email' => 'required|string|unique:users,email',
@@ -80,7 +80,8 @@ class AuthController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Ошибка регистрации',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'trace' => $e->getTrace(),
             ], 500);
         }
     }

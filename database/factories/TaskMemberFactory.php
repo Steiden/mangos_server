@@ -7,9 +7,9 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TaskPerformer>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TaskMember>
  */
-class TaskPerformerFactory extends Factory
+class TaskMemberFactory extends Factory
 {
     /**
      * Define the model's default state.

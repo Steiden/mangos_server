@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TaskPerformerResource extends JsonResource
+class TaskMemberResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

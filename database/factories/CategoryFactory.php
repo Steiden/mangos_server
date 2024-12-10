@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Organization;
 use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +20,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word(),
-            'project_id' => Project::all()->random()->id
+            'organization_id' => Organization::all()->random()->id
         ];
     }
 }

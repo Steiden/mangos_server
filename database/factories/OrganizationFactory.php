@@ -25,7 +25,7 @@ class OrganizationFactory extends Factory
             'address' => $this->faker->address(),
             'phone' => $this->faker->phoneNumber(),
             'activity_type_id' => ActivityType::all()->random()->id,
-            'chat_id' => Chat::all()->random()->id,
+            // 'chat_id' => Chat::all()->random()->id,
             'user_id' => User::all()->random()->id
         ];
     }

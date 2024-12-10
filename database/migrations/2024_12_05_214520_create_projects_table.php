@@ -18,10 +18,12 @@ return new class extends Migration
             $table->string('avatar');
             $table->unsignedBigInteger('execution_status_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('organization_id');
             $table->timestamps();
 
             $table->foreign('execution_status_id')->references('id')->on('execution_statuses');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('organization_id')->references('id')->on('organizations');
         });
     }
 

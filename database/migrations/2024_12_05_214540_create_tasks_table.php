@@ -18,12 +18,14 @@ return new class extends Migration
             $table->date('started_at');
             $table->date('finished_at')->nullable();
             $table->unsignedBigInteger('execution_status_id');
+            $table->unsignedBigInteger('task_priority_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id')->nullable();
             $table->timestamps();
 
             $table->foreign('execution_status_id')->references('id')->on('execution_statuses');
+            $table->foreign('task_priority_id')->references('id')->on('task_priorities');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('project_id')->references('id')->on('projects');

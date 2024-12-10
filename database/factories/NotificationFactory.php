@@ -20,6 +20,7 @@ class NotificationFactory extends Factory
         return [
             'title' => $this->faker->title(),
             'text' => $this->faker->sentence(5),
+            'link' => $this->faker->url,
             'is_read' => false,
             'user_id' => User::all()->random()->id
         ];

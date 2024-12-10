@@ -23,7 +23,7 @@ class TaskFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word(),
-            'description' => $this->faker->paragraph(),
+            'description' => $this->faker->sentence(10),
             'started_at' => $this->faker->dateTime(),
             'finished_at' => $this->faker->dateTimeBetween('now', '+12 month'),
             'execution_status_id' => ExecutionStatus::all()->random()->id,
