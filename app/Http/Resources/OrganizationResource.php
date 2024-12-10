@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\ActivityType;
+use App\Models\OrganizationEmployee;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -24,6 +25,10 @@ class OrganizationResource extends JsonResource
             'phone' => $this->phone,
             'activity_type' => new ActivityTypeResource(ActivityType::where('id', $this->activity_type_id)->first()),
             'user' => new UserShortResource(User::find($this->user_id)),
+            'members' => UserShortResource::collection(
+                User::whereIn(
+                    'id',
+                    OrganizationEmployee::where('id', $this->id)->pluck('user_id')->toArray())->get()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

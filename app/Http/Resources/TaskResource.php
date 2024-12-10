@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\ExecutionStatus;
 use App\Models\Project;
 use App\Models\Tag;
+use App\Models\TaskMember;
 use App\Models\TaskPriority;
 use App\Models\TaskTag;
 use App\Models\User;
@@ -36,7 +37,10 @@ class TaskResource extends JsonResource
                 'id',
                 TaskTag::where('task_id', $this->id)->pluck('tag_id')->toArray()
             )->get()),
-            'created_at' => $this->created_at,
+            'members' => UserShortResource::collection(
+                User::whereIn(
+                    'id', 
+                    TaskMember::where('id', $this->id)->pluck('user_id')->toArray())->get()),            'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
     }

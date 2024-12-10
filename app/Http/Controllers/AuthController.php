@@ -58,8 +58,8 @@ class AuthController extends Controller
                 'login' => 'required|string|unique:users,login',
                 'password' => 'required|string',
                 'avatar' => '',
-                'first_name' => 'required|string',
-                'second_name' => 'required|string',
+                'first_name' => 'string',
+                'second_name' => 'string',
                 'patronymic' => 'string',
                 'phone' => 'string',
                 'email' => 'required|string|unique:users,email',
@@ -81,7 +81,6 @@ class AuthController extends Controller
                 'success' => false,
                 'message' => 'Ошибка регистрации',
                 'error' => $e->getMessage(),
-                'trace' => $e->getTrace(),
             ], 500);
         }
     }
