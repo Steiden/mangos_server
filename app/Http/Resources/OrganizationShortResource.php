@@ -20,6 +20,8 @@ class OrganizationShortResource extends JsonResource
             'name' => $this->name,
             'address' => $this->address,
             'phone' => $this->phone,
+            'activity_type_id' => $this->activity_type_id,
+            'user_id' => $this->user_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

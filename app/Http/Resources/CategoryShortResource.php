@@ -17,6 +17,7 @@ class CategoryShortResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'organization_id' => $this->organization_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

@@ -17,6 +17,7 @@ class PostShortResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'division_id' => $this->division_id,
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),
         ];

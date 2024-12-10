@@ -22,8 +22,6 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         $role = Role::find($this->role_id);
-        $user = User::find($this->user_id);
-        $post = Post::find($this->post_id);
 
         return [
             'id' => $this->id,
@@ -38,10 +36,6 @@ class UserResource extends JsonResource
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'role' => new RoleResource($role),
-            'chats' => ChatShortResource::collection(Chat::whereIn(
-                'id',
-                ChatMember::where('user_id', $this->id)->pluck('chat_id')->toArray()
-            )->get())
         ];
     }
 }

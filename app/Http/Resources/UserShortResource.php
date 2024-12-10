@@ -23,10 +23,10 @@ class UserShortResource extends JsonResource
             'patronymic' => $this->patronymic,
             'phone' => $this->phone,
             'email' => $this->email,
-            'is_subordinate' => $this->is_subordinate,
             'verified_at' => $this->verified_at,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
+            'role_id' => $this->role_id,
         ];
     }
 }
