@@ -57,13 +57,13 @@ class AuthController extends Controller
             $validatedData = $request->validate([
                 'login' => 'required|string|unique:users,login',
                 'password' => 'required|string',
-                'avatar' => '',
-                'first_name' => 'string',
-                'second_name' => 'string',
-                'patronymic' => 'string',
-                'phone' => 'string',
+                // 'avatar' => '',
+                // 'first_name' => 'string',
+                // 'second_name' => 'string',
+                // 'patronymic' => 'string',
+                // 'phone' => 'string',
                 'email' => 'required|string|unique:users,email',
-                'organization_id' => 'integer',
+                // 'organization_id' => 'integer',
             ]);
 
             $validatedData['password'] = bcrypt($request->get('password'));
