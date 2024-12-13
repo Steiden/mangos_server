@@ -17,6 +17,7 @@ class ExecutionStatusResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'caption' => $this->caption,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

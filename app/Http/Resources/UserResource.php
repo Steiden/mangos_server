@@ -6,6 +6,7 @@ use App\Models\Chat;
 use App\Models\ChatMember;
 use App\Models\Division;
 use App\Models\Organization;
+use App\Models\OrganizationEmployee;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
@@ -21,8 +22,6 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $role = Role::find($this->role_id);
-
         return [
             'id' => $this->id,
             'login' => $this->login,
@@ -35,7 +34,15 @@ class UserResource extends JsonResource
             'verified_at' => $this->verified_at,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
-            'role' => new RoleResource($role),
+            'role' => new RoleResource(Role::where('id', $this->role_id)->first()),
+            'organizations' => OrganizationResource::collection(
+                Organization::whereIn('id',
+                    OrganizationEmployee::where('user_id', $this->id)
+                        ->pluck('organization_id')
+                )->get()
+            ),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

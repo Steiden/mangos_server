@@ -12,9 +12,19 @@ class ProjectController extends Controller
     public function index()
     {
         try {
+            $projects = Project::paginate(25);
+
             return response()->json([
                 'message' => 'Проекты',
-                'data' => ProjectResource::collection(Project::all()),
+                'data' => ProjectResource::collection($projects->items()),
+                'pagination' => [
+                    'total' => $projects->total(),
+                    'per_page' => $projects->perPage(),
+                    'current_page' => $projects->currentPage(),
+                    'last_page' => $projects->lastPage(),
+                    'next_page_url' => $projects->nextPageUrl(),
+                    'prev_page_url' => $projects->previousPageUrl(),
+                ],
                 'success' => true
             ], 200);
         } catch (Exception $e) {

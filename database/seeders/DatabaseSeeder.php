@@ -59,38 +59,63 @@ class DatabaseSeeder extends Seeder
             'name' => 'user'
         ]);
 
+        ExecutionStatus::createOrFirst([
+            'name' => 'in_progress',
+            'caption' => 'В процессе'
+        ]);
+        ExecutionStatus::createOrFirst([
+            'name' => 'done',
+            'caption' => 'Завершено'
+        ]);
+        ExecutionStatus::createOrFirst([
+            'name' => 'failed',
+            'caption' => 'Отклонено'
+        ]);
+
+        ActivityType::createOrFirst([
+            'name' => 'Разработка'
+        ]);
+        ActivityType::createOrFirst([
+            'name' => 'Продвижение'
+        ]);
+        ActivityType::createOrFirst([
+            'name' => 'Маркетинг'
+        ]);
+        ActivityType::createOrFirst([
+            'name' => 'Дизайн'
+        ]);
         
         // Chat::factory(10)->create();
         // ChatMember::factory(10)->create();
         // ChatModerator::factory(10)->create();
         
-        User::factory(10)->create();
+        // User::factory(10)->create();
         
-        ActivityType::factory(10)->create();
-        Organization::factory(10)->create();
-        Division::factory(10)->create();
-        Post::factory(10)->create();
-        OrganizationEmployee::factory(10)->create();
+        // ActivityType::factory(10)->create();
+        // Organization::factory(10)->create();
+        // Division::factory(10)->create();
+        // Post::factory(10)->create();
+        // OrganizationEmployee::factory(10)->create();
         
-        ExecutionStatus::factory(10)->create();
-        Project::factory(10)->create();
-        ProjectMember::factory(10)->create();
+        // ExecutionStatus::factory(10)->create();
+        // Project::factory(10)->create();
+        // ProjectMember::factory(10)->create();
 
-        Category::factory(10)->create();
-        Tag::factory(10)->create();
+        // Category::factory(10)->create();
+        // Tag::factory(10)->create();
 
         // FileType::factory(10)->create();
         // File::factory(10)->create();
 
-        TaskPriority::factory(10)->create();
-        Task::factory(10)->create();
-        TaskTag::factory(30)->create();
-        TaskMember::factory(10)->create();
+        // TaskPriority::factory(10)->create();
+        // Task::factory(10)->create();
+        // TaskTag::factory(30)->create();
+        // TaskMember::factory(10)->create();
         // TaskAttachment::factory(10)->create();
 
-        EventRepeat::factory(10)->create();
-        Event::factory(10)->create();
-        EventMember::factory(10)->create();
+        // EventRepeat::factory(10)->create();
+        // Event::factory(10)->create();
+        // EventMember::factory(10)->create();
 
         // ComparisonType::factory(10)->create();
         // ConditionObject::factory(10)->create();

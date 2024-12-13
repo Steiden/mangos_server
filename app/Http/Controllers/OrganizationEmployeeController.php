@@ -30,8 +30,9 @@ class OrganizationEmployeeController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                'organization_id' => 'required|exists:organizations,id',
-                'user_id' => 'required|exists:users,id',
+                'organization_id' => 'required|integer|exists:organizations,id',
+                'user_id' => 'required|integer|exists:users,id',
+                'post_id' => 'integer|exists:posts,id'
             ]);
 
             $organizationEmployee = OrganizationEmployee::create($validatedData);

@@ -30,8 +30,12 @@ class OrganizationController extends Controller
     {
         try {
             $validatedData = $request->validate([
+                'full_name' => 'required|string|max:255',
                 'name' => 'required|string|max:255',
-                'description' => 'required|string|max:255'
+                'address' => 'required|string|max:255',
+                'phone' => 'required|string|max:255',
+                'activity_type_id' => 'required|integer|exists:activity_types,id',
+                'user_id' => 'required|integer|exists:users,id'
             ]);
 
             $organization = Organization::create($validatedData);

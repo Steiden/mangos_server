@@ -7,6 +7,7 @@ use App\Models\OrganizationEmployee;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Project;
 
 class OrganizationResource extends JsonResource
 {
@@ -28,7 +29,8 @@ class OrganizationResource extends JsonResource
             'members' => UserShortResource::collection(
                 User::whereIn(
                     'id',
-                    OrganizationEmployee::where('id', $this->id)->pluck('user_id')->toArray())->get()),
+                    OrganizationEmployee::where('organization_id', $this->id)->pluck('user_id')->toArray())->get()),
+            'projects' => ProjectShortResource::collection(Project::where('organization_id', $this->id)->get()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

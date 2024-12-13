@@ -14,6 +14,7 @@ class Project extends Model
         'description',
         'avatar',
         'execution_status_id',
-        'user_id'
+        'user_id',
+        'organization_id',
     ];
 }
