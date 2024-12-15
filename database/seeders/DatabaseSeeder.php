@@ -84,6 +84,16 @@ class DatabaseSeeder extends Seeder
         ActivityType::createOrFirst([
             'name' => 'Дизайн'
         ]);
+
+        TaskPriority::createOrFirst([
+            'name' => 'Низкий'
+        ]);
+        TaskPriority::createOrFirst([
+            'name' => 'Средний'
+        ]);
+        TaskPriority::createOrFirst([
+            'name' => 'Высокий'
+        ]);
         
         // Chat::factory(10)->create();
         // ChatMember::factory(10)->create();

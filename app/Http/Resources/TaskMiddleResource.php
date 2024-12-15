@@ -2,16 +2,15 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Chat;
+use App\Models\Category;
 use App\Models\ExecutionStatus;
-use App\Models\Organization;
-use App\Models\ProjectMember;
+use App\Models\Project;
+use App\Models\TaskPriority;
 use App\Models\User;
-use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProjectResource extends JsonResource
+class TaskMiddleResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -24,12 +23,13 @@ class ProjectResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'avatar' => $this->avatar,
+            'started_at' => $this->started_at,
+            'finished_at' => $this->finished_at,
             'execution_status' => new ExecutionStatusResource(ExecutionStatus::where('id', $this->execution_status_id)->first()),
-            'organization_id' => new OrganizationShortResource(Organization::where('id', $this->organization_id)->first()),
-            'user' => new UserShortResource(User::find($this->user_id)->first()),
-            'members' => ProjectMemberResource::collection(ProjectMember::where('project_id', $this->id)->get()),
-            'tasks' => TaskMiddleResource::collection(Task::where('project_id', $this->id)->get()),
+            'task_priority' => new TaskPriorityResource(TaskPriority::where('id', $this->task_priority_id)->first()),
+            'category' => new CategoryShortResource(Category::where('id', $this->category_id)->first()),
+            'user' => new UserShortResource(User::where('id', $this->user_id)->first()),
+            'project' => new ProjectShortResource(Project::where('id', $this->project_id)->first()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

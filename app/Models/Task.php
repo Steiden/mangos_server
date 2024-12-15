@@ -15,6 +15,7 @@ class Task extends Model
         'started_at',
         'finished_at',
         'execution_status_id',
+        'task_priority_id',
         'category_id',
         'user_id',
         'project_id'

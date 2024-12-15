@@ -37,10 +37,8 @@ class TaskResource extends JsonResource
                 'id',
                 TaskTag::where('task_id', $this->id)->pluck('tag_id')->toArray()
             )->get()),
-            'members' => UserShortResource::collection(
-                User::whereIn(
-                    'id', 
-                    TaskMember::where('id', $this->id)->pluck('user_id')->toArray())->get()),            'created_at' => $this->created_at,
+            'members' => TaskMemberResource::collection(TaskMember::where('task_id', $this->id)->get()),
+            'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
     }
