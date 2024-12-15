@@ -19,7 +19,7 @@ class UserShortResource extends JsonResource
             'login' => $this->login,
             'avatar' => $this->avatar,
             'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+            'second_name' => $this->second_name,
             'patronymic' => $this->patronymic,
             'phone' => $this->phone,
             'email' => $this->email,

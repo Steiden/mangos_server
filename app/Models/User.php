@@ -17,7 +17,7 @@ class User extends Model
         'password',
         'avatar',
         'first_name',
-        'last_name',
+        'second_name',
         'patronymic',
         'phone',
         'email',

@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Organization;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -20,6 +21,7 @@ class OrganizationEmployeeResource extends JsonResource
             'id' => $this->id,
             'organization' => new OrganizationShortResource(Organization::find($this->organization_id)),
             'user' => new UserShortResource(User::find($this->user_id)),
+            'post' => new PostShortResource(Post::find($this->post_id)),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];
