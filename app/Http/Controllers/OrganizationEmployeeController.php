@@ -86,8 +86,9 @@ class OrganizationEmployeeController extends Controller
             }
 
             $validatedData = $request->validate([
-                'organization_id' => 'exists:organizations,id',
-                'user_id' => 'exists:users,id',
+                'organization_id' => 'integer|exists:organizations,id',
+                'user_id' => 'integer|exists:users,id',
+                'post_id' => 'integer|exists:posts,id'
             ]);
 
             $organizationEmployee->update($validatedData);

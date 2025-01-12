@@ -35,6 +35,12 @@ class OrganizationResource extends JsonResource
             'categories' => CategoryShortResource::collection(Category::where('organization_id', $this->id)->get()),
             'tags' => TagShortResource::collection(Tag::where('organization_id', $this->id)->get()),
             'divisions' => DivisionResource::collection(Division::where('organization_id', $this->id)->get()),
+            'posts' => PostShortResource::collection(
+                Post::whereIn(
+                    'division_id',
+                    Division::where('organization_id', $this->id)->pluck('id')
+                )->get()
+            ),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
