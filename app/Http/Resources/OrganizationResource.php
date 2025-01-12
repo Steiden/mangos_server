@@ -4,7 +4,9 @@ namespace App\Http\Resources;
 
 use App\Models\ActivityType;
 use App\Models\Category;
+use App\Models\Division;
 use App\Models\OrganizationEmployee;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -32,6 +34,7 @@ class OrganizationResource extends JsonResource
             'projects' => ProjectShortResource::collection(Project::where('organization_id', $this->id)->get()),
             'categories' => CategoryShortResource::collection(Category::where('organization_id', $this->id)->get()),
             'tags' => TagShortResource::collection(Tag::where('organization_id', $this->id)->get()),
+            'divisions' => DivisionResource::collection(Division::where('organization_id', $this->id)->get()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

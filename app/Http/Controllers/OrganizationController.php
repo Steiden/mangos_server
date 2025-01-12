@@ -30,7 +30,6 @@ class OrganizationController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                'full_name' => 'required|string|max:255',
                 'name' => 'required|string|max:255',
                 'address' => 'required|string|max:255',
                 'phone' => 'required|string|max:255',
