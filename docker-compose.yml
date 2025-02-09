@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: .dockerfile
-    container_name: mangos_backend
+    container_name: backend_mangos
     restart: unless-stopped
     tty: true
     environment:
@@ -18,7 +18,24 @@ services:
     networks:
       - app-network
     ports:
-      - "8080:80"
+      - "8080:80"  # Изменено с "80:80" на "8080:80"
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "81:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/ssl:/etc/nginx/ssl
+      - /var/www/html/.well-known:/var/www/html/.well-known  # Монтируем директорию для проверки домена
+    networks:
+      - app-network
+    depends_on:
+      - app
 
 networks:
   app-network:

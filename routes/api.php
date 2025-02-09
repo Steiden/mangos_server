@@ -80,6 +80,10 @@ use Illuminate\Support\Facades\Route;
 // task_tags
 // users
 
+Route::get('test', function () {
+    return 'Test';
+});
+
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
